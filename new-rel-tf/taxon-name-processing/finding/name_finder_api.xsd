@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    elementFormDefault="qualified"
+    targetNamespace="http://globalnames.org/namefinder" 
+    xmlns:dwc="http://rs.tdwg.org/dwc/terms/">
+    <xs:import namespace="http://rs.tdwg.org/dwc/terms/" schemaLocation="http://darwincore.googlecode.com/svn/trunk/xsd/tdwg_dwcterms.xsd"></xs:import>
+    
+    <xs:element name="response">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="documentId" type="xs:string"/>
+                <xs:element name="names">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="name" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="verbatim" type="xs:string"/>
+                                        <xs:element ref="dwc:scientificName"/>
+                                        <xs:element name="details">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element ref="dwc:higherClassification" minOccurs="0"/>
+                                                    <xs:element ref="dwc:genus" minOccurs="0"/>
+                                                    <xs:element ref="dwc:subgenus" minOccurs="0"/>
+                                                    <xs:element ref="dwc:specificEpithet" minOccurs="0"/>
+                                                    <xs:element ref="dwc:infraspecificEpithet" minOccurs="0"/>
+                                                    <xs:element ref="dwc:taxonRank" minOccurs="0"/>
+                                                    <xs:element ref="dwc:scientificNameAuthorship" minOccurs="0"/>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="score" type="xs:double" minOccurs="0"/>
+                                        <xs:element name="ids" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="id" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="identifier" type="xs:string" />
+                                                            <xs:attribute name="source" type="xs:string" />
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="offsets">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="offset" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="start" type="xs:positiveInteger" />
+                                                            <xs:attribute name="end" type="xs:positiveInteger" />
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>

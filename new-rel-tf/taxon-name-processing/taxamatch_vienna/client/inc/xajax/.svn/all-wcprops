@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/357/trunk/taxamatch_vienna/client/inc/xajax
+END
+LICENSE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/357/trunk/taxamatch_vienna/client/inc/xajax/LICENSE.txt
+END
+xajaxResponse.inc.php
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/357/trunk/taxamatch_vienna/client/inc/xajax/xajaxResponse.inc.php
+END
+xajax.inc.php
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/357/trunk/taxamatch_vienna/client/inc/xajax/xajax.inc.php
+END
+README.txt
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/357/trunk/taxamatch_vienna/client/inc/xajax/README.txt
+END
+xajaxCompress.php
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/357/trunk/taxamatch_vienna/client/inc/xajax/xajaxCompress.php
+END

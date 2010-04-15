@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<names xmlns="http://globalnames.org/nameparser"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://globalnames.org/nameparser name_parser_api.xsd">
+    <hybridFormula verbatim="Agrostis stolonifera L.   ×   Polypogon  monspeliensis (L.) Desf." normalised="Agrostis stolonifera L. × Polypogon monspeliensis (L.) Desf.">
+        <scientificName verbatim="Agrostis stolonifera L." normalised="Agrostis stolonifera L." canonical="Agrostis stolonifera">
+            <genus>Agrostis</genus>
+            <species epitheton="stolonifera" authorship="L.">
+                <combinationAuthorteam authorteam="L.">
+                    <author>L.</author>
+                </combinationAuthorteam>
+            </species>
+        </scientificName>
+        <scientificName verbatim="Polypogon  monspeliensis (L.) Desf." normalised="Polypogon monspeliensis (L.) Desf." canonical="Polypogon  monspeliensis">
+            <genus>Polypogon</genus>
+            <species epitheton="monspeliensis" authorship="(L.) Desf.">
+                <combinationAuthorteam authorteam="Desf.">
+                    <author>Desf.</author>
+                </combinationAuthorteam>
+                <basionymAuthorteam authorteam="L.">
+                    <author>L.</author>
+                </basionymAuthorteam>
+            </species>
+        </scientificName>        
+    </hybridFormula>
+    <scientificName verbatim="alberta Carla Brunii Maxtor (L.)" unparsable="true"/>
+    <scientificName verbatim="Fagus sylvatica subsp. orientalis (Lipsky) Greuter &amp; Burdet var. syrica Greuter &amp; Burdet">
+        <genus authorship="authorship7">fdsfds</genus>
+        <species epitheton="sylvatica"/>
+        <infraspecies epitheton="orientalis" rank="subsp" authorship="(Lipsky) Greuter &amp; Burdet">
+            <combinationAuthorteam authorteam="Greuter &amp; Burdet">
+                <author>Greuter</author>
+                <author>Burdet</author>
+            </combinationAuthorteam>
+            <basionymAuthorteam authorteam="Lipsky">
+                <author>Lipsky</author>
+            </basionymAuthorteam>
+        </infraspecies>
+        <infraspecies epitheton="syrica" rank="var" authorship="Greuter &amp; Burdet">
+            <combinationAuthorteam authorteam="Greuter &amp; Burdet">
+                <author>Greuter</author>
+                <author>Burdet</author>
+            </combinationAuthorteam>
+        </infraspecies>
+    </scientificName>
+</names>

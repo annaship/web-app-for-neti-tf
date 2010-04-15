@@ -1,0 +1,15 @@
+require 'spec'
+require File.join(File.dirname(__FILE__), '..', 'taxon_finder_client')
+
+
+describe "TaxonFinder client" do
+
+  before :each do
+    @client = TaxonFinderClient.new
+  end
+
+
+  it "does something" do
+    
+  end
+end

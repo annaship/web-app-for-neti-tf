@@ -1,0 +1,151 @@
+require 'ostruct'
+require 'socket'
+require File.dirname(__FILE__) + '/name'
+
+class Object
+   def blank?
+     respond_to?(:empty?) ? empty? : !self
+   end
+end
+
+class TaxonFinderClient
+  def initialize(host = 'localhost', port = 1234)
+    @host = host
+    @port = port
+    socket
+  end
+  
+  def add_name(name)
+    @names << name
+  end
+<<<<<<< .mine
+
+  def get(data)
+    # data = open('/Users/anna/work/ruby/text_good.txt').read()
+    # " ".join(sys.argv[1:])
+
+    # # # Create a socket (SOCK_STREAM means a TCP socket)
+    # # sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    # # 
+    # # # Connect to server and send data
+    # # sock.connect((HOST, PORT))
+    # # sock.send(data + "\n")
+    # 
+    # # Receive data from the server and shut down
+    # received = sock.recv(1024)
+    # sock.close()
+
+    # print "Sent:     %s" % data
+    # print "Received: %s" % received
+    # puts "=" * 80
+    # puts "data = "+data.inspect.to_s
+    # @names = data
+    # puts "@names = "+@names.inspect.to_s
+
+    # require "socket"  
+    # dts = TCPServer.new('localhost', 20000)  
+    # loop do  
+    #   Thread.start(dts.accept) do |s|  
+    #     print(s, " is accepted\n")  
+    #     s.write(Time.now)  
+    #     print(s, " is gone\n")  
+    #     s.close  
+    #   end  
+    # end
+
+    socket ||= TCPSocket.new @host, @port
+
+    #input = data
+    socket.puts data
+    # puts "input = "+input.inspect.to_s
+    # output = socket.gets
+    output = ""
+    while !socket.eof? do
+      output = output + socket.read(1024)
+=======
+  
+  def get(str)
+    @names = []
+    @current_string = ''
+    @current_string_state = ''
+    @word_list_matches = 0
+    words = str.split(/\s/)
+  
+    current_position = 0
+    words.each do |word|
+      unless word.empty?
+        taxon_find(word, current_position)
+        current_position += word.length
+      end
+      current_position += 1
+>>>>>>> .r866
+    end
+<<<<<<< .mine
+    puts "output[0..100] = "+output[0..100].inspect.to_s
+    # @names = ["This", "is", "a", "name"]
+    socket.close 
+    
+    # @names = "Nothing!"
+    @names = output.gsub("\t","\n") #if output
+    
+  end  
+=======
+    @socket.close
+    @names
+  end
+>>>>>>> .r866
+  
+  # def get(str)
+  #   @names = []
+  #   # @current_string = ''
+  #   # @current_string_state = ''
+  #   # @word_list_matches = 0
+  #   # words = str.split(/\s/)
+  #   # current_position = 0
+  #   # words.each do |word|
+  #   #   unless word.empty?
+  #   #     taxon_find(word, current_position)
+  #   #     current_position += word.length
+  #   #   end
+  #   #   current_position += 1
+  #   # end
+  #   @names
+  # end
+  #   
+  alias_method :find, :get
+  
+  def taxon_find(word, current_position)
+    input = "#{word}|#{@current_string}|#{@current_string_state}|#{@word_list_matches}|0"
+    @socket.puts input
+    if output = @socket.gets
+      response = parse_socket_response(output)
+      return if not response
+      
+      add_name Name.new(response.return_string, response.return_score, current_position) unless response.return_string.blank?
+      add_name Name.new(response.return_string_2, response.return_score_2, current_position) unless response.return_string_2.blank?
+    end
+  end
+  
+  def parse_socket_response(response)
+    current_string, current_string_state, word_list_matches, return_string, return_score, return_string_2, return_score_2 = response.strip.split '|'
+    @current_string = current_string
+    @current_string_state = current_string_state
+    @word_list_matches = word_list_matches
+    if not return_string.blank? or not return_string_2.blank?
+      OpenStruct.new( { :current_string       => current_string,
+                      :current_string_state => current_string_state,
+                      :word_list_matches    => word_list_matches,
+                      :return_string        => return_string,
+                      :return_score         => return_score,
+                      :return_string_2      => return_string_2,
+                      :return_score_2       => return_score_2 })
+    else
+      false
+    end
+  end
+  
+  def socket
+    @socket ||= TCPSocket.open @host, @port
+  end
+  
+end

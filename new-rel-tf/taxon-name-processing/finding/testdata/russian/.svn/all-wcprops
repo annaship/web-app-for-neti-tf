@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/123/trunk/finding/testdata/russian
+END
+all_names.txt
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/123/trunk/finding/testdata/russian/all_names.txt
+END
+document.txt
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/105/trunk/finding/testdata/russian/document.txt
+END

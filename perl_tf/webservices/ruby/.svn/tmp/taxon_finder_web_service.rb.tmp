@@ -1,0 +1,78 @@
+require 'rubygems'
+require 'sinatra'
+require File.dirname(__FILE__) + '/lib/taxon_finder_client'
+require 'nokogiri'
+require 'uri'
+require 'open-uri'
+require 'base64'
+require 'builder'
+require 'active_support'
+
+set :show_exceptions, false
+
+
+# Array of allowed formats
+@@valid_formats = %w[xml json]
+@@valid_types = %w[text url encodedtext encodedurl]
+
+#show user an info page if they hit the index
+get '/' do
+  "Taxon Name Finding API, documentation at http://code.google.com/p/taxon-name-processing"
+end
+get '/find' do
+  @@client = TaxonFinderClient.new 'localhost'
+  format = @@valid_formats.include?(params[:format]) ? params[:format] : "xml"
+  begin
+    content = params[:text] || params[:url] || params[:encodedtext] || params[:encodedurl]
+  rescue
+<<<<<<< .mine
+    status 404
+=======
+    status 400
+>>>>>>> .r866
+  end
+  content = URI.unescape content
+  # decode if it's encoded
+<<<<<<< .mine
+  # scrape if url
+  puts "params = " + params.inspect.to_s
+  content = URI.unescape content
+=======
+>>>>>>> .r866
+  content = Base64::decode64 content if params[:encodedtext] || params[:encodedurl]
+  # scrape if it's a url
+  if params[:encodedurl] || params[:url]
+    begin
+      response = open(content)
+    rescue
+      status 400
+    end
+    content = Nokogiri::HTML(response).content
+  end
+  names = @@client.find(content)
+
+  if format == 'json'
+    content_type 'application/json', :charset => 'utf-8'
+    return Hash.from_xml("#{to_xml(names)}").to_json
+  end
+  content_type 'text/xml', :charset => 'utf-8'
+  to_xml(names)
+end
+
+def to_xml(names)
+  xml = Builder::XmlMarkup.new
+  xml.instruct!
+  xml.response do
+    xml.names("xmlns:dwc" => "http://rs.tdwg.org/dwc/terms/") do
+      names.each do |name|
+        xml.name name #do
+          # xml.verbatim name.verbatim
+          # xml.dwc(:scientificName, name.scientific)
+          # xml.offsets do
+          #   xml.offset(:start => name.start_pos, :end => name.end_pos)
+          # end
+        # end
+      end    
+    end
+  end
+end
