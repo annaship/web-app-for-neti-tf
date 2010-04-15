@@ -1,1 +1,0 @@
-/Users/anna/work/test_neti_app/call_client.rb

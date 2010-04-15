@@ -38,6 +38,11 @@ class NetiTaxonFinderClient
     socket.close 
     
     @names = output.gsub("\t","\n") #if output
+    file_outp = open("/Users/anna/work/test_neti_app/test_web_service/out_file_new.txt", 'w')
+    file_outp.print @names.inspect.to_s
+    # out_file = open("/Users/anna/work/test_neti_app/res/out_file_"+file_name, "w")                                     
+    # out_file.print resp.inspect.to_s                                                                                   
+    file_outp.close
     
     current_pos = 1
     # to get offset should we looking for a name in a text anew?
