@@ -20,6 +20,10 @@ class NetiTaxonFinderClient
   end
   
   def get(data)
+    # file_inp = open("/Library/Webserver/Documents/Ifamericanseashell.txt")
+    # data = file_inp.read
+    puts "output = " + data[-100, 100].to_s
+    puts data.class
     names_hash = {}
     names_arr = []
 

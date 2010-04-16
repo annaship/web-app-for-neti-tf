@@ -20,6 +20,10 @@ class TaxonFinderClient
   end
   
   def get(str)
+    
+    # file_inp = open("/Library/Webserver/Documents/Ifamericanseashell.txt")
+    # str = file_inp.read
+    
     @names = []
     @current_string = ''
     @current_string_state = ''
@@ -35,27 +39,14 @@ class TaxonFinderClient
       current_position += 1
     end
     @socket.close
-    # print "@names = %s\n" % @names.inspect.to_s
+    
+    file_outp = open("/Users/anna/work/test_neti_app/test_web_service/out_file_new-or-file.txt", 'w')
+    file_outp.write @names.inspect.to_s
+    file_outp.close
+    
     @names
   end
   
-  # def get(str)
-  #   @names = []
-  #   # @current_string = ''
-  #   # @current_string_state = ''
-  #   # @word_list_matches = 0
-  #   # words = str.split(/\s/)
-  #   # current_position = 0
-  #   # words.each do |word|
-  #   #   unless word.empty?
-  #   #     taxon_find(word, current_position)
-  #   #     current_position += word.length
-  #   #   end
-  #   #   current_position += 1
-  #   # end
-  #   @names
-  # end
-  #   
   alias_method :find, :get
   
   def taxon_find(word, current_position)

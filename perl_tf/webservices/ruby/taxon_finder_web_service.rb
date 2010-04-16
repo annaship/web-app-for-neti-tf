@@ -8,6 +8,7 @@ require 'open-uri'
 require 'base64'
 require 'builder'
 require 'active_support'
+require 'ruby-debug'
 
 set :show_exceptions, false
 
@@ -21,8 +22,8 @@ get '/' do
   "Taxon Name Finding API, documentation at http://code.google.com/p/taxon-name-processing"
 end
 get '/find' do
-  # @@client = TaxonFinderClient.new 'localhost' 
-  @@client = NetiTaxonFinderClient.new 'localhost' 
+  @@client = TaxonFinderClient.new 'localhost' 
+  # @@client = NetiTaxonFinderClient.new 'localhost' 
   format = @@valid_formats.include?(params[:format]) ? params[:format] : "xml"
   begin
     content = params[:text] || params[:url] || params[:encodedtext] || params[:encodedurl]
@@ -33,14 +34,18 @@ get '/find' do
   # decode if it's encoded
   content = Base64::decode64 content if params[:encodedtext] || params[:encodedurl]
   # scrape if it's a url
+  # debugger
   if params[:encodedurl] || params[:url]
     begin
       response = open(content)
     rescue
       status 400
     end
+    debugger
     content = Nokogiri::HTML(response).content
+    # content = response.read
   end
+  # puts "==================" + content[-100, 100].inspect.to_s
   names = @@client.find(content)
 
   if format == 'json'
