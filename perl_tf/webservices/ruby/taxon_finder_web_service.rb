@@ -38,12 +38,19 @@ get '/find' do
   if params[:encodedurl] || params[:url]
     begin
       response = open(content)
+      close(content)
     rescue
       status 400
     end
-    debugger
-    content = Nokogiri::HTML(response).content
-    # content = response.read
+    # debugger
+    # content = response.read.remove_firstascii("")
+    pure_text = open(content).read
+    
+    if pure_text.include?("<html>")    
+      content = Nokogiri::HTML(response).content 
+    else
+      content = pure_text
+    end
   end
   # puts "==================" + content[-100, 100].inspect.to_s
   names = @@client.find(content)
@@ -71,5 +78,20 @@ def to_xml(names)
         end
       end    
     end
+  end
+end
+
+class String
+  def remove_firstascii(replacement)
+    res = ""
+    self.each_byte do |c|
+      if c < 32 || (c > 128 && c < 191) then
+        res << replacement
+      else
+        # puts c
+        res << c
+      end
+    end
+    res
   end
 end

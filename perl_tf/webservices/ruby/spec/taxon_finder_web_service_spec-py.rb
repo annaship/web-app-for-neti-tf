@@ -6,13 +6,14 @@ require 'ruby-debug'
 TEST_TEXT = 'first we find Mus musculus and then we find Volutharpa ampullacea again and M. musculus also'
 # TEST_URL  = 'http://www.bacterio.cict.fr/d/desulfotomaculum.html'
 # TEST_URL  = 'http://www.gutenberg.org/files/2600/2600.txt' #Invalid argument
-
 TEST_URL  = '/Users/anna/work/texts/aseashell/americanseashell.txt'
 # LOCAL_URL = 'http://localhost/text_good1.txt'
 # LOCAL_URL = 'http://localhost/xaa' #rm x?? && split -b 797k pictorialgeo.txt
 # rm x?? && split -b 900k pictorialgeo.txt - 512
 # LOCAL_URL = 'http://localhost/pictorialgeo.txt' #403 Forbidden
 LOCAL_URL = 'http://localhost/Ifamericanseashell.txt'
+HTML_URL = 'http://localhost/animalia.html'
+TEXT_URL = 'http://localhost/bit.txt'
 # sometimes "Connection reset by peer"
 
 describe "Taxon Finder Web Service" do
@@ -38,12 +39,24 @@ describe "Taxon Finder Web Service" do
   #   assert last_response.body.include?("Mus musculus")
   #   assert last_response.body.include?("Volutharpa ampullacea")
   # end
+
+  it "should use nokogiri for html" do
+    get "/find?url=#{HTML_URL}"
+    # last_response.body.should == ""
+    assert last_response.body.include?('<verbatim>Pristidae</verbatim>')
+  end  
+
+  it "should not use nokogiri for non html" do
+    get "/find?url=#{TEXT_URL}"
+    # last_response.body.should == ""
+    assert last_response.body.include?('<verbatim>Isognomon radiatus</verbatim>')
+  end  
   
   it "should return all names from local URL" do
     get "/find?url=#{LOCAL_URL}"
     # last_response.body.should == ""
-    assert last_response.body.include?('<verbatim>Mus musculus</verbatim>')
-    assert last_response.body.include?('<verbatim>Volutharpa ampullacea</verbatim>')
+    assert last_response.body.include?('<verbatim>Isognomon radiatus</verbatim>')
+    # assert last_response.body.include?('<verbatim>Volutharpa ampullacea</verbatim>')
   end  
 #   
 #   # it "should return all names from URL" do
