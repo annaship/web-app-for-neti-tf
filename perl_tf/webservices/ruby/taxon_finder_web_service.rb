@@ -33,25 +33,17 @@ get '/find' do
   # decode if it's encoded
   content = Base64::decode64 content if params[:encodedtext] || params[:encodedurl]
   # scrape if it's a url
-  # debugger
   if params[:encodedurl] || params[:url]
     begin
       response = open(content)
-      # close(content)
+      pure_text = open(content).read
     rescue
       status 400
     end
-    # debugger
-    # content = response.read.remove_firstascii("")
-    pure_text = open(content).read
-    
-    if pure_text.include?("<html>")    
-      content = Nokogiri::HTML(response).content 
-    else
-      content = pure_text
-    end
+    content = pure_text if pure_text
+    # use nokogiri only for HTML, because otherwise it stops on OCR errors
+    content = Nokogiri::HTML(response).content if (pure_text && pure_text.include?("<html>"))    
   end
-  # puts "==================" + content[-100, 100].inspect.to_s
   names = @@client.find(content)
 
   if format == 'json'
@@ -77,20 +69,5 @@ def to_xml(names)
         end
       end    
     end
-  end
-end
-
-class String
-  def remove_firstascii(replacement)
-    res = ""
-    self.each_byte do |c|
-      if c < 32 || (c > 128 && c < 191) then
-        res << replacement
-      else
-        # puts c
-        res << c
-      end
-    end
-    res
   end
 end
