@@ -12,7 +12,6 @@ require 'ruby-debug'
 
 set :show_exceptions, false
 
-
 # Array of allowed formats
 @@valid_formats = %w[xml json]
 @@valid_types = %w[text url encodedtext encodedurl]
@@ -22,8 +21,8 @@ get '/' do
   "Taxon Name Finding API, documentation at http://code.google.com/p/taxon-name-processing"
 end
 get '/find' do
-  @@client = TaxonFinderClient.new 'localhost' 
-  # @@client = NetiTaxonFinderClient.new 'localhost' 
+  # @@client = TaxonFinderClient.new 'localhost' 
+  @@client = NetiTaxonFinderClient.new 'localhost' 
   format = @@valid_formats.include?(params[:format]) ? params[:format] : "xml"
   begin
     content = params[:text] || params[:url] || params[:encodedtext] || params[:encodedurl]
@@ -38,7 +37,7 @@ get '/find' do
   if params[:encodedurl] || params[:url]
     begin
       response = open(content)
-      close(content)
+      # close(content)
     rescue
       status 400
     end

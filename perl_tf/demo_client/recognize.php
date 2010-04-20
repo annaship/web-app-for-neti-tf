@@ -160,7 +160,6 @@ $time_start = microtime(true);
  
 //parse the xml response and move it to an array
   $possible_names = array();
-	$n = 0;
   foreach ($xml->names->name as $name) 
   {
     $namespaces = $name->getNameSpaces(true);
@@ -168,7 +167,6 @@ $time_start = microtime(true);
     $verbatim = (string )$name->verbatim;
     $scientific = (string )$dwc->scientificName;
     $possible_names[$verbatim] = $scientific;
-		$n++;
   }
 
     $time_end = microtime(true);
@@ -176,7 +174,6 @@ $time_start = microtime(true);
 
     $time = $time_end - $time_start;
     echo "<b>Strings: ".count(@$possible_names)."</b><br />
-				  <b>Strings: ".$n."</b><br />
           <b>Time:&nbsp;".round($time,2)." sec</b><br /><br /><br />";
 
 ?>
