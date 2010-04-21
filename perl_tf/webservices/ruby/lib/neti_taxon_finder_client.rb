@@ -42,21 +42,18 @@ class NetiTaxonFinderClient
     socket.close 
     
     @names = output.gsub("\t","\n") #if output
+    # file_outp = open("/Users/anna/work/test_neti_app/test_web_service/out_file_new.txt", 'w')
+    # file_outp.print @names.inspect.to_s
+    # out_file = open("/Users/anna/work/test_neti_app/res/out_file_"+file_name, "w")                                     
+    # out_file.print resp.inspect.to_s                                                                                   
+    # file_outp.close
     
-    current_pos = 0
+    current_pos = 1
     # to get offset should we looking for a name in a text anew?
     # TODO: produce rank (see PHP)
     @names.each do |name|
       name = name.strip
-      if name && name.include?("\]")
-        brack_ind   = name.index("\]")
-        or_name     = name.gsub(/\[[^\]]+\]/, '.')
-        name_index  = data.index(or_name)
-        current_pos = name_index + 1 + or_name.size
-      else
-        name_index  = data.index(name)
-        current_pos = name_index + 1 + name.size if name_index  
-      end
+      current_pos += name.size
       a_name = Name.new(name, "", current_pos) unless name.blank?
       names_arr << a_name
       #<Name:0x105263a30 @verbatim="Aequipecten", @end_pos=638819, @rank="G", @name="Aequipecten", @start_pos=638809, @scientific="Aequipecten">, 
