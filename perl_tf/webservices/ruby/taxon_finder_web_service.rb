@@ -42,6 +42,7 @@ get '/find' do
     end
     content = pure_text if pure_text
     # use nokogiri only for HTML, because otherwise it stops on OCR errors
+    # content = Nokogiri::HTML(response).content if pure_text.include?("<html>")    
     content = Nokogiri::HTML(response).content if (pure_text && pure_text.include?("<html>"))    
   end
   names = @@client.find(content)

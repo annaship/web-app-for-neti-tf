@@ -66,12 +66,12 @@ FakeWeb.allow_net_connect = false
          FakeWeb.register_uri(:get, FAKE_302, :body => "the Ursus maritimus is freaking AWESOME!")
          FakeWeb.register_uri(:get, NOTHING, :body => "nothing")
          STATUS_CODES = [
-           ['301','Permanent Redirect',FAKE_301],
-           ['302','Temp Redirect',FAKE_302],
-           ['200','Great Success'],
-           ['418',"I'm a teapot"],
-           ['999','this is fake'],
-           ['500','Server Error'],
+           ['301', 'Permanent Redirect', FAKE_301],
+           ['302', 'Temp Redirect', FAKE_302],
+           ['200', 'Great Success'],
+           ['418', "I'm a teapot"],
+           ['999', 'this is fake'],
+           ['500', 'Server Error'],
          ]
          TEST = URI.escape "http://www.responsetest.com/"
          FakeWeb.register_uri(:get, TEST,
@@ -172,7 +172,6 @@ FakeWeb.allow_net_connect = false
         </li><li>Mammalia: The furry and the whiskered.
         </ul></ul>
         </body></html>')
-
         get "/find?url=#{HTML_URL}"
         # last_response.body.should == ""
         assert last_response.body.include?('<verbatim>Dicynodontia</verbatim>')
@@ -244,14 +243,7 @@ FakeWeb.allow_net_connect = false
 
       it "should return all names from local URL" do
         LOCAL_URL = URI.escape 'http://localhost/Ifamericanseashell.txt'
-        FakeWeb.register_uri(:get, LOCAL_URL, :body => "a. Lister's Tree Oyster, Isognomon radiatus Anton, l]/^ inches (South-
-
-        eastern Florida and the West Indies), p. 358.
-
-        b. Flat Tree Oyster, Isognomon alatiis Gmelin, 2^^ inches (Florida and
-
-        West Indies), p. 358.
-        ")
+        FakeWeb.register_uri(:get, LOCAL_URL, :body => "a. Lister's Tree Oyster, Isognomon radiatus Anton, l]/^ inches (South")
         get "/find?url=#{LOCAL_URL}"
         assert last_response.body.include?('<verbatim>Isognomon radiatus</verbatim>')
       end  
@@ -269,3 +261,5 @@ FakeWeb.allow_net_connect = false
       end
     end
 end
+
+FakeWeb.allow_net_connect = true
