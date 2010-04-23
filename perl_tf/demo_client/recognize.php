@@ -164,8 +164,8 @@ $time_start = microtime(true);
   {
     $namespaces = $name->getNameSpaces(true);
     $dwc = $name->children($namespaces['dwc']);
-    $verbatim = (string )$name->verbatim;
-    $scientific = (string )$dwc->scientificName;
+    $verbatim = (string)$name->verbatim;
+    $scientific = (string)$dwc->scientificName;
     $possible_names[$verbatim] = $scientific;
   }
 
@@ -174,20 +174,19 @@ $time_start = microtime(true);
 
     $time = $time_end - $time_start;
     echo "<b>Strings: ".count(@$possible_names)."</b><br />
-          <b>Time:&nbsp;".round($time,2)." sec</b><br /><br /><br />";
+          <b>Time:&nbsp;".round($time, 2)." sec</b><br /><br /><br />";
 
 ?>
       <table class='nice' width=900>
         <tr>
-          <th>Name String (as appears in text)</th>
-          <th>Verbatim String</th>
+          <th>Verbatim String (as appears in text)</th>
+          <th>Scientific name</th>
         </tr>   
 <?php       
 //print each verbatim name and scientific name string in the table
       foreach( $possible_names as $vern_name => $sci_name){
       	echo "<tr><td>$vern_name</td><td>$sci_name</td></tr>";
       }       
-      
     }
 ?>
       </table>

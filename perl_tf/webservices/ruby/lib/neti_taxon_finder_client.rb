@@ -29,7 +29,8 @@ class NetiTaxonFinderClient
 
     # socket ||= TCPSocket.new @host, @port
 
-    socket.puts data
+    socket.write data
+    # socket.puts data
     output = ""
     while !socket.eof? do
       output = output + socket.read(1024)
