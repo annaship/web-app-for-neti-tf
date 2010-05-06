@@ -1,6 +1,7 @@
 *.txt
 *.gz
 .svn
+svn
 RCS
 new-rel-tf
 

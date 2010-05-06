@@ -1,7 +1,7 @@
 10
 
 dir
-1064
+1070
 svn://code01.ubio.org/taxon_finding/taxon_finder/server/wordLists
 svn://code01.ubio.org
 
@@ -502,40 +502,6 @@ agoddard
 
 131
 
-family_new.txt
-file
-
-
-
-
-2010-03-04T19:37:11.000000Z
-3c02993b95f9a2312d2aee10c4c61740
-2009-12-07T22:23:14.305115Z
-728
-agoddard
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-537
-
 stats_species_2.txt
 file
 
@@ -570,14 +536,14 @@ agoddard
 
 144780
 
-stats_species_4.txt
+family_new.txt
 file
 
 
 
 
 2010-03-04T19:37:11.000000Z
-d658c726492760bc7d3f7aa42817f791
+3c02993b95f9a2312d2aee10c4c61740
 2009-12-07T22:23:14.305115Z
 728
 agoddard
@@ -602,7 +568,7 @@ agoddard
 
 
 
-6902564
+537
 
 linkitGenus.txt
 file
@@ -637,6 +603,40 @@ agoddard
 
 
 5591798
+
+stats_species_4.txt
+file
+
+
+
+
+2010-03-04T19:37:11.000000Z
+d658c726492760bc7d3f7aa42817f791
+2009-12-07T22:23:14.305115Z
+728
+agoddard
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+6902564
 
 stats_family.txt
 file
@@ -774,40 +774,6 @@ agoddard
 
 24277
 
-linkitAmbigSpecies.txt
-file
-
-
-
-
-2010-03-04T19:37:11.000000Z
-4e368e182ff2e3fc723ff0c2e23a41a8
-2009-12-07T22:23:14.305115Z
-728
-agoddard
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-2623
-
 linkitSpecies.txt
 file
 
@@ -841,6 +807,40 @@ agoddard
 
 
 7953740
+
+linkitAmbigSpecies.txt
+file
+
+
+
+
+2010-03-04T19:37:11.000000Z
+4e368e182ff2e3fc723ff0c2e23a41a8
+2009-12-07T22:23:14.305115Z
+728
+agoddard
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2623
 
 stats_species.txt
 file
